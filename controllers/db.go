@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/jinzhu/gorm"
+	"github.com/rezandry/kejarmimpi/models"
 	//For connect postgres
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -17,6 +18,7 @@ func InitDb() *gorm.DB {
 		dbhost = "host=127.0.0.1 user=postgres dbname=kejarmimpi sslmode=disable password=postgresreza"
 	}
 	db, err := gorm.Open("postgres", dbhost)
+	db.AutoMigrate(&models.Post, &models.User)
 	if err != nil {
 		fmt.Println(err)
 	} else {
