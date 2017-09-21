@@ -17,8 +17,10 @@ func InitDb() *gorm.DB {
 	if dbhost == "" {
 		dbhost = "host=127.0.0.1 user=postgres dbname=kejarmimpi sslmode=disable password=postgresreza"
 	}
+	var post models.Post
+	var user models.User
 	db, err := gorm.Open("postgres", dbhost)
-	db.AutoMigrate(&models.Post, &models.User)
+	db.AutoMigrate(post, user)
 	if err != nil {
 		fmt.Println(err)
 	} else {
