@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/rezandry/kejarmimpi/controllers"
 	"github.com/rezandry/kejarmimpi/middleware"
@@ -27,7 +28,8 @@ func main() {
 	r.GET("/post", controllers.GetPost)
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
-	r.POST("/post", controllers.CreatePost)
+	r.GET("/star", controllers.Star)
+	r.POST("/star", controllers.CreateStar)
 	r.Use(middleware.CheckToken)
 	//Method for post
 	// r.POST("/post", func(c *gin.Context){
@@ -42,13 +44,14 @@ func main() {
 	// 		fmt.Println("Ga entuk")
 	// 		fmt.Println(form.Content)
 	// 		fmt.Println(form.Photo)
-	// 	}	
-	
-	// })	
-	// r.POST("/post", controllers.CreatePost)
+	// 	}
+
+	// })
+	r.POST("/post", controllers.CreatePost)
 	r.PUT("/post/:id", controllers.UpdatePost)
 	r.DELETE("/post/:id", controllers.DeletePost)
 	//Method for logout
+	r.GET("/collabs/:id", controllers.Collabs)
 	r.GET("/logout", controllers.Logout)
 	//Method for profile
 	r.GET("/profile/", controllers.GetProfile)

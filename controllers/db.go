@@ -19,8 +19,11 @@ func InitDb() *gorm.DB {
 	}
 	var post models.Post
 	var user models.User
+	var collabs models.Collabs
+	var star models.Star
+
 	db, err := gorm.Open("postgres", dbhost)
-	db.AutoMigrate(post, user)
+	db.AutoMigrate(post, user, collabs, star)
 	if err != nil {
 		fmt.Println(err)
 	} else {
