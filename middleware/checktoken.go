@@ -20,7 +20,7 @@ func CheckToken(c *gin.Context) {
 	//1. check if token empty
 	if token == "" {
 		data := map[string]interface{}{
-			"code":    "402",
+			"code":    "409",
 			"message": "token API required",
 		}
 		c.JSON(402, data)
@@ -31,7 +31,7 @@ func CheckToken(c *gin.Context) {
 	//2. check if token not same as database
 	if err := db.Where("token = ?", token).First(&user).Error; err != nil {
 		data := map[string]interface{}{
-			"code":    "401",
+			"code":    "410",
 			"message": "token API invalid",
 		}
 		c.JSON(401, data)

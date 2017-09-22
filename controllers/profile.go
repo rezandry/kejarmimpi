@@ -38,7 +38,7 @@ func UpdateProfile(c *gin.Context) {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	}
-	c.BindJSON(&user)
+	c.Bind(&user)
 	db.Save(&user)
 	user.Password = ""
 	user.Token = ""

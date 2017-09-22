@@ -41,25 +41,25 @@ func Register(c *gin.Context) {
 
 	if user.Name == string("") {
 		res.Code = "401"
-		res.Message = "can not be empty"
+		res.Message = "Field can not be empty"
 		c.JSON(400, res)
 	} else if user.Password == string("") {
-		res.Code = "403"
-		res.Message = "password can not be empty"
+		res.Code = "401"
+		res.Message = "Field can not be empty"
 		c.JSON(400, res)
 	} else if !emailRegexp.MatchString(user.Email) {
-		res.Code = "401"
-		res.Message = "invalid format email!"
+		res.Code = "402"
+		res.Message = "Invalid format email!"
 		c.JSON(400, res)
 	} else if user.Password != user.PasswordConfirm {
-		res.Code = "401"
+		res.Code = "403"
 		res.Message = "Password not same!"
 		c.JSON(400, res)
 	} else if err := db.Where("email = ?", user.Email).First(&user).Error; err != nil {
 		plainPassword := user.Password
 		hashedPassword, err := HashPassword(user.Password)
 		if err != nil {
-			res.Code = "401"
+			res.Code = "405"
 			res.Message = "Failed to encrypt password!"
 			c.JSON(400, res)
 		}
@@ -85,7 +85,7 @@ func Register(c *gin.Context) {
 		}
 
 	} else {
-		res.Code = "401"
+		res.Code = "406"
 		res.Message = "Email has been used!"
 		c.JSON(400, res)
 	}

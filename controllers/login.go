@@ -29,7 +29,7 @@ func Login(c *gin.Context) {
 	if err := db.Select("email, password").Where("email = ?", user.Email).First(&user).Error; err != nil {
 		//5. Skip Generate Token and return message
 		var res models.Response
-		res.Code = "422"
+		res.Code = "407"
 		res.Message = "Email doesn't exist!"
 		res.Token = ""
 		data := template.Response(&res)
@@ -56,7 +56,7 @@ func Login(c *gin.Context) {
 			return
 		}
 		var res models.Response
-		res.Code = "422"
+		res.Code = "408"
 		res.Message = "Your Password is wrong!"
 		res.Token = user.Token
 		data := template.Response(&res)

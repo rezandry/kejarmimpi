@@ -25,6 +25,8 @@ func GetPost(c *gin.Context) {
 			c.AbortWithStatus(404)
 			fmt.Println(err)
 		}
+		post[i].CollabsCount = CountCollabs(post[i].ID)
+		fmt.Println(post[i].CollabsCount)
 		user.Password = ""
 		user.Token = ""
 		user.PasswordConfirm = ""
