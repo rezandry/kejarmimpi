@@ -14,7 +14,7 @@ func GetPost(c *gin.Context) {
 	defer db.Close()
 	var post []models.Post
 
-	if err := db.Find(&post).Error; err != nil {
+	if err := db.Raw("SELECT * FROM posts ORDER BY id DESC").Scan(&post).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	}
@@ -80,7 +80,7 @@ func CreatePost(c *gin.Context) {
 		res.Message = "Content must not blank!"
 		c.JSON(400, res)
 	} else {
-		t := time.Now()
+		t := time.Now().Add(7 * time.Hour)
 		post.Date = t
 		post.IDUser = user.ID
 		if err := db.Create(&post).Error; err != nil {
