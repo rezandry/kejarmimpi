@@ -6,11 +6,11 @@ import (
 
 //Post is struct for save data post
 type Post struct {
-	ID         uint      `json:"id"`
-	Content    string    `json:"content"`
-	Date       time.Time `json:"date"`
-	Photo      string    `json:"photo"`
-	IDUser     uint      `json:"idUser"`
-	User       User      `json:"User"`
-	IDCategory uint      `json:"idCategory"`
+	ID         uint      `form:"id" json:"id"`
+	Content    string    `form:"content" json:"content"`
+	Date       time.Time `form:"date" json:"date"`
+	Photo      string    `form:"photo" json:"photo"`
+	IDUser     uint      `form:"idUser" json:"idUser"`
+	User       User      `form:"User" json:"User"`
+	IDCategory uint      `form:"idCategory" json:"idCategory"`
 }

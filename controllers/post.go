@@ -38,19 +38,43 @@ func GetPost(c *gin.Context) {
 
 //CreatePost used for create a new post
 func CreatePost(c *gin.Context) {
+	// fmt.Println(c.PostForm("stuff"))
+	// fmt.Println(c.PostForm("astuff"))
+	// c.JSON(http.StatusOK, gin.H{"response": c.PostForm("stuff")})
+
+	// type Req struct {
+	// 	Content string `form:"content" json:"content" binding:"required"`
+	// 	Photo   string `form:"photo" json:"photo" binding:"required"`
+	// }
+	// var req Req
+
 	db := InitDb()
 	defer db.Close()
 	var user models.User
 	var post models.Post
+	c.Bind(&post)
 	var res models.Response
+
+	// type PostReq struct {
+	// 	Content string `form:"content" json:"content" binding:"required"`
+	// 	Photo   string `form:"photo" json:"photo" binding:"required"`
+	// }
 
 	token := c.Request.Header.Get("token")
 	if err := db.Where("token = ?", token).First(&user).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	}
-	c.BindJSON(&post)
-	post.IDUser = user.ID
+	// c.BindJSON(&post)
+	// var form PostReq
+	c.Bind(&post)
+	fmt.Println(post.Content)
+
+	if post.Content == "" {
+		fmt.Println("Ga entuk")
+		fmt.Println("Ga entuk")
+	}
+
 	if post.Content == "" && post.Photo == "" {
 		res.Code = "401"
 		res.Message = "Content must not blank!"

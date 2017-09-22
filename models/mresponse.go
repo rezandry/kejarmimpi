@@ -2,7 +2,7 @@ package models
 
 //Response is for send template response
 type Response struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-	Token   string `json:"token"`
+	Code    string `form:"code" json:"code"`
+	Message string `form:"message" json:"message"`
+	Token   string `form:"token" json:"token"`
 }

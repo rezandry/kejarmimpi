@@ -2,33 +2,17 @@ package models
 
 //User is struct for database User
 type User struct {
-<<<<<<< HEAD
-	ID              uint   `json:"id"`
-	Name            string `json:"name"`
-	Email           string `json:"email"`
-	Password        string `json:"password"`
-	PasswordConfirm string `json:"password_confirm"`
-	Photo           string `json:"photo"`
-	Job             string `json:"job"`
-	Address         string `json:"address"`
-	Status          string `json:"status"`
-	Biograph        string `json:"biograph"`
-	Education       string `json:"education"`
-	Career          string `json:"career"`
-	Token           string `json:"token"`
-=======
-	ID        uint   `json:"id"`
-	Name      string `json:"name"`
-	Email     string `json:"email"`
-	Password  string `json:"password"`
-	PasswordConfirm  string `json:"password_confirm"`
-	Photo     string `json:"photo"`
-	Job       string `json:"job"`
-	Address   string `json:"address"`
-	Status    string `json:"status"`
-	Biograph  string `json:"biograph"`
-	Education string `json:"education"`
-	Career    string `json:"career"`
-	Token     string `json:"token"`
->>>>>>> 9fafbf152d3328feb0d1dc7939112e8a940716f4
+	ID              uint   `form:"id" json:"id"`
+	Name            string `form:"name" json:"name"`
+	Email           string `form:"email" json:"email"`
+	Password        string `form:"password" json:"password"`
+	PasswordConfirm string `form:"password_confirm" json:"password_confirm"`
+	Photo           string `form:"photo" json:"photo"`
+	Job             string `form:"job" json:"job"`
+	Address         string `form:"address" json:"address"`
+	Status          string `form:"status" json:"status"`
+	Biograph        string `form:"biograph" json:"biograph"`
+	Education       string `form:"education" json:"education"`
+	Career          string `form:"career" json:"career"`
+	Token           string `form:"token" json:"token"`
 }
