@@ -21,8 +21,10 @@ func Login(c *gin.Context) {
 	defer db.Close()
 	var user models.User
 	//1. get email and password
-	c.BindJSON(&user)
+	c.Bind(&user)
 	password := user.Password
+	fmt.Println(user.Email)
+	fmt.Println(user.Password)
 	//2. check email
 	if err := db.Select("email, password").Where("email = ?", user.Email).First(&user).Error; err != nil {
 		//5. Skip Generate Token and return message

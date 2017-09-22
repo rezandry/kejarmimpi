@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"regexp"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +18,8 @@ func Register(c *gin.Context) {
 	defer db.Close()
 	var user models.User
 	var res models.Response
-	c.BindJSON(&user)
+	c.Bind(&user)
+	fmt.Println(user.Email)
 	// switch {
 	// case user.Name == string(""):
 	// 	res.Code = "401"
