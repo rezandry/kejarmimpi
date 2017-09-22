@@ -24,6 +24,7 @@ func main() {
 	//This func is for server API
 	r := gin.Default()
 	//Method for get post and login
+	r.GET("/cekuser", controllers.CekUser)
 	r.GET("/post", controllers.GetPost)
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
@@ -35,7 +36,7 @@ func main() {
 	//Method for logout
 	r.GET("/logout", controllers.Logout)
 	//Method for profile
-	r.GET("/profile/:id", controllers.GetProfile)
-	r.PUT("profile/:id", controllers.UpdateProfile)
+	r.GET("/profile/", controllers.GetProfile)
+	r.PUT("profile/", controllers.UpdateProfile)
 	r.Run(":" + port)
 }

@@ -17,39 +17,30 @@ func Register(c *gin.Context) {
 	defer db.Close()
 	var user models.User
 	var res models.Response
-	// user := models.User{}
-	// get data
 	c.BindJSON(&user)
-	// Check
-	// if user.Email == string("") {
-	// 	response.Code = "401"
-	// 	response.Message = "Email can not be empty"
-	// 	c.JSON(400, response)
-	// 	return
-	// } else if user.Name == string("") {
-	// 	response.Code = "401"
-	// 	response.Message = "Name can not be empty"
-	// 	c.JSON(400, response)
-	// 	return
-	// } else if user.Password+user.PasswordConfirm == string("") {
-	// 	response.Code = "401"
-	// 	response.Message = "Password can not be empty"
-	// 	c.JSON(400, response)
-	// 	return
+	// switch {
+	// case user.Name == string(""):
+	// 	res.Code = "401"
+	// 	res.Message = "can not be empty"
+	// 	c.JSON(400, res)
+	// case user.Password == string(""):
+	// 	res.Code = "403"
+	// 	res.Message = "password can not be empty"
+	// 	c.JSON(400, res)
+	// case !emailRegexp.MatchString(user.Email):
+	// 	res.Code = "401"
+	// 	res.Message = "invalid format email!"
+	// 	c.JSON(400, res)
+	// case user.Password != user.PasswordConfirm:
+	// 	res.Code = "401"
+	// 	res.Message = "Password not same!"
+	// 	c.JSON(400, res)
 	// }
-	// Check Valid email
+
 	if user.Name == string("") {
 		res.Code = "401"
 		res.Message = "can not be empty"
 		c.JSON(400, res)
-		// } else if user.Name == string(""){
-		// 	response.Code = "401"
-		// 	response.Message = "can not be empty"
-		// 	c.JSON(400, response)
-		// } else if user.Password + user.PasswordConfirm == string(""){
-		// 	response.Code = "401"
-		// 	response.Message = "can not be empty"
-		// 	c.JSON(400, response)
 	} else if user.Password == string("") {
 		res.Code = "403"
 		res.Message = "password can not be empty"
@@ -84,7 +75,7 @@ func Register(c *gin.Context) {
 			//5. Return token and message
 			var res models.Response
 			res.Code = "201"
-			res.Message = "Login Success!"
+			res.Message = "Register Success!"
 			res.Token = user.Token
 			data := template.Response(&res)
 			c.JSON(200, data)
@@ -95,6 +86,5 @@ func Register(c *gin.Context) {
 		res.Code = "401"
 		res.Message = "Email has been used!"
 		c.JSON(400, res)
-
 	}
 }

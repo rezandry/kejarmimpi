@@ -15,9 +15,9 @@ func GetProfile(c *gin.Context) {
 
 	var user models.User
 	// var profile models.Profile
-	id := c.Params.ByName("id")
+	token := c.Request.Header.Get("token")
 
-	if err := db.Select("id, name, photo, job, address, status, biograph, education, career").Where("id = ?", id).Find(&user).Error; err != nil {
+	if err := db.Select("id, name, photo, job, address, status, biograph, education, career").Where("token = ?", token).Find(&user).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
@@ -32,8 +32,9 @@ func UpdateProfile(c *gin.Context) {
 	defer db.Close()
 
 	var user models.User
-	id := c.Params.ByName("id")
-	if err := db.Where("id = ?", id).First(&user).Error; err != nil {
+	// id := c.Params.ByName("id")
+	token := c.Request.Header.Get("token")
+	if err := db.Where("token = ?", token).First(&user).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	}
