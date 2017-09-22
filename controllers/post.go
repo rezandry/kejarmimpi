@@ -81,8 +81,7 @@ func CreatePost(c *gin.Context) {
 		c.JSON(400, res)
 	} else {
 		t := time.Now()
-		z := t.Format("2006-01-02 15:04:05")
-		post.Date = z
+		post.Date = t
 		post.IDUser = user.ID
 		if err := db.Create(&post).Error; err != nil {
 			c.AbortWithStatus(404)
