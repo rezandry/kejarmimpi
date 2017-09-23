@@ -17,7 +17,7 @@ func GetProfile(c *gin.Context) {
 	// var profile models.Profile
 	token := c.Request.Header.Get("token")
 
-	if err := db.Select("id, name, photo, job, address, status, biograph, education, career").Where("token = ?", token).Find(&user).Error; err != nil {
+	if err := db.Where("token = ?", token).Find(&user).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {

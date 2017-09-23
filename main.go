@@ -19,7 +19,7 @@ func main() {
 	// db.AutoMigrate(&user)
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8000"
+		port = "8080"
 	}
 	//This func is for server API
 	r := gin.Default()

@@ -9,10 +9,17 @@ type User struct {
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm"`
 	Photo           string `form:"photo" json:"photo"`
 	Job             string `form:"job" json:"job"`
-	Address         string `form:"address" json:"address"`
-	Status          string `form:"status" json:"status"`
-	Biograph        string `form:"biograph" json:"biograph"`
+	Location        string `form:"location" json:"location"`
+	Headline        string `form:"headlin" json:"headline"`
+	Bio             string `form:"bio" json:"bio"`
+	Biography       string `form:"biography" json:"biography"`
 	Education       string `form:"education" json:"education"`
 	Career          string `form:"career" json:"career"`
+	OtherCareer     string `form:"othercareer" json:"othercareer"`
+	Organization    string `form:"organization" json:"organization"`
+	Facebook        string `form:"facebook" json:"facebook"`
+	Linkedin        string `form:"linkedin" json:"linkedin"`
+	Twitter         string `form:"twitter" json:"twitter"`
+	Instagram       string `form:"instagram" json:"instagram"`
 	Token           string `form:"token" json:"token"`
 }
