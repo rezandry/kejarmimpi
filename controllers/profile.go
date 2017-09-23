@@ -39,8 +39,10 @@ func UpdateProfile(c *gin.Context) {
 		fmt.Println(err)
 	}
 	c.Bind(&user)
+	user.Token = token
 	db.Save(&user)
 	user.Password = ""
 	user.Token = ""
-	c.JSON(200, user)
+	data := template.Profile(&user)
+	c.JSON(200, data)
 }
