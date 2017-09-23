@@ -9,6 +9,7 @@ func Profile(user *models.User) map[string]interface{} {
 		"id":           user.ID,
 		"name":         user.Name,
 		"photo":        user.Photo,
+		"email":        user.Email,
 		"job":          user.Job,
 		"address":      user.Location,
 		"status":       user.Headline,
