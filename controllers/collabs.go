@@ -52,6 +52,7 @@ func Collabs(c *gin.Context) {
 
 }
 
+//NotifCollabs notification logs
 func NotifCollabs(c *gin.Context) {
 	db := InitDb()
 	defer db.Close()
@@ -68,13 +69,13 @@ func NotifCollabs(c *gin.Context) {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else if len(collabs) > 0 {
-		for i := 0; i <= len(collabs); i++ {
+		for i := 0; i < len(collabs); i++ {
 			var userc models.User
 			if err := db.Where("id = ?", collabs[i].IDUser).First(&userc).Error; err != nil {
 				c.AbortWithStatus(404)
 				fmt.Println(err)
 			}
-			collabs[i].Message = userc.Name + "Interest to collabs with you."
+			collabs[i].Message = userc.Name + " Interest to collabs with you."
 		}
 		data := map[string]interface{}{
 			"notif": collabs,
